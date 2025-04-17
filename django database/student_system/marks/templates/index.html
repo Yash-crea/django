@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Registration System</title>
+    <style>
+        .nav-button { margin: 5px; padding: 10px; }
+        .content-section { display: none; margin-top: 20px; }
+        .active { display: block; }
+        table { border-collapse: collapse; }
+        td, th { border: 1px solid black; padding: 8px; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Buttons -->
+    <button class="nav-button" onclick="window.location.href='?section=home'">Home</button>
+    <button class="nav-button" onclick="window.location.href='?section=input_mark'">Input Mark</button>
+    <button class="nav-button" onclick="window.location.href='?section=view_mark'">View Mark</button>
+    <button class="nav-button" onclick="window.location.href='?section=update_mark'">Update Mark</button>
+    
+    <!-- Home Section -->
+    <div id="home_section" class="content-section {% if active_section == 'home' %}active{% endif %}">
+        <h2>Records</h2>
+        <p>Number of students: {{ num_students }}</p>
+        <p>Number of modules: {{ num_modules }}</p>
+    </div>
+
+    <!-- Input Mark Section -->
+    <div id="input_mark" class="content-section {% if active_section == 'input_mark' %}active{% endif %}">
+        <h2>Mark Entry Point</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ input_form.as_p }}
+            <button type="submit" name="input_submit">Submit</button>
+            <button type="reset">Reset</button>
+        </form>
+    </div>
+
+    <!-- View Mark Section -->
+    <div id="view_mark" class="content-section {% if active_section == 'view_mark' %}active{% endif %}">
+        <h2>View Mark</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="module_code" placeholder="Module Code">
+            <button type="submit" name="view_submit">View</button>
+        </form>
+        {% if view_marks %}
+        <table>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>CW1</th>
+                <th>CW2</th>
+                <th>CW3</th>
+                <th>Total</th>
+            </tr>
+            {% for mark in view_marks %}
+            <tr>
+                <td>{{ mark.student_id }}</td>
+                <td>{{ mark.student_name }}</td>
+                <td>{{ mark.cw1 }}</td>
+                <td>{{ mark.cw2 }}</td>
+                <td>{{ mark.cw3 }}</td>
+                <td>{{ mark.total_marks }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+
+    <!-- Update Mark Section -->
+    <div id="update_mark" class="content-section {% if active_section == 'update_mark' %}active{% endif %}">
+        <h2>Modify Mark</h2>
+        <form method="post">
+            {% csrf_token %}
+            <h3>Search Entry</h3>
+            <input type="text" name="module_code" placeholder="Module Code">
+            <input type="text" name="student_id" placeholder="Student ID">
+            <input type="date" name="date">
+            <button type="submit" name="update_search">Search</button>
+            
+            {% if update_form.instance.pk %}
+            <h3>Update Entry</h3>
+            <input type="hidden" name="mark_id" value="{{ update_form.instance.pk }}">
+            {{ update_form.as_p }}
+            <button type="submit" name="update_submit">Update</button>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
