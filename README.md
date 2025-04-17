@@ -1,2 +1,2 @@
 # django
-django csv and django database
+student management system using django csv and django management aystem
