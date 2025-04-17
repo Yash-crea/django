@@ -1,0 +1,10 @@
+module_code,module_name,CW1,CW2,CW3,student_id,student_name,gender,date_of_entry
+455,maths,33,33,33,45,john,male,2025-02-02
+455,maths,,,,46,jane,Female,2025-02-02
+455,maths,,,,56,johny,Male,2025-02-02
+455,maths,45,67,45,3,nina,Female,2025-02-02
+637,philosophy,45,67,56,45,rihanna,Female,2025-01-01
+455,maths,56,67,67,455,john,Male,2025-02-01
+1221,python,65,34,76,1224,jean_claude,Male,2025-04-01
+657,phsyical education,67,56,56,2345,kylian mbappe,Male,2025-01-01
+657,phsyical education,56,67,76,2334,kylian mbappe,Male,2025-01-01

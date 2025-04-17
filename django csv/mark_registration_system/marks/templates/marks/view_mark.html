@@ -1,0 +1,49 @@
+<!-- view_marks.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Mark - Mark Registration System</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Mark Registration System</h1>
+        <h2>View Mark</h2>
+
+        <form method="GET" action="{% url 'view_mark' %}">
+            <label for="module_code">Module Code:</label>
+            <input type="text" id="module_code" name="module_code" required><br>
+
+            <button type="submit">View</button>
+        </form>
+
+        {% if marks %}
+        <table>
+            <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>CW 1</th>
+                <th>CW 2</th>
+                <th>CW 3</th>
+                <th>Total Marks</th>
+            </tr>
+            {% for mark in marks %}
+            <tr>
+                <td>{{ mark.0 }}</td> <!-- Student ID -->
+                <td>{{ mark.1 }}</td> <!-- Student Name -->
+                <td>{{ mark.2 }}</td> <!-- CW1 -->
+                <td>{{ mark.3 }}</td> <!-- CW2 -->
+                <td>{{ mark.4 }}</td> <!-- CW3 -->
+                <td>{{ mark.5 }}</td> <!-- Total Marks -->
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>No marks found for this module.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

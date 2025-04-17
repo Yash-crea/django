@@ -1,0 +1,36 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Mark Registration System</title>
+
+    <!-- Load static files -->
+    {% load static %}
+
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>Mark Registration System</h1>
+     
+
+    <div class="container">
+        <div class="button-container">
+            <button onclick="location.href='{% url 'input_mark' %}'">Input Mark</button>
+            <button onclick="location.href='{% url 'view_mark' %}'">View Mark</button>
+            <button onclick="location.href='{% url 'update_mark' %}'">Update Mark</button>
+            <button onclick="location.href='{% url 'visualisation' %}'">Visualisation</button>
+          
+
+        <div class="info">
+            <p><strong>Number of Students:</strong> {{ num_students }}</p>
+            <p><strong>Number of Modules:</strong> {{ num_modules }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
